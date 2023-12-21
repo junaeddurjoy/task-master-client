@@ -12,6 +12,10 @@ import AddTask from './pages/AddTask.jsx';
 import Completed from './pages/Completed.jsx';
 import Ongoing from './pages/Ongoing.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import Authprovider from './providers/AuthProvider.jsx';
+import Login from './pages/Login.jsx';
+import Registration from './pages/Registration.jsx';
+import PrivateRoutes from './PrivateRoutes.jsx';
 
 const router = createBrowserRouter([
   {
@@ -24,23 +28,31 @@ const router = createBrowserRouter([
       },
       {
         path: "/todo",
-        element: <ToDo></ToDo>,
+        element: <PrivateRoutes><ToDo></ToDo></PrivateRoutes>,
       },
       {
         path: "/addtask",
-        element: <AddTask></AddTask>,
+        element: <PrivateRoutes><AddTask></AddTask></PrivateRoutes>,
       },
       {
         path: "/completed",
-        element: <Completed></Completed>,
+        element: <PrivateRoutes><Completed></Completed></PrivateRoutes>,
       },
       {
         path: "/ongoing",
-        element: <Ongoing></Ongoing>,
+        element: <PrivateRoutes><Ongoing></Ongoing></PrivateRoutes>,
       },
       {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/registration",
+        element: <Registration></Registration>,
       }
     ]
   },
@@ -49,6 +61,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Authprovider>
+      <RouterProvider router={router} />
+    </Authprovider>
   </React.StrictMode>,
 )

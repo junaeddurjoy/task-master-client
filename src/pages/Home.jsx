@@ -1,4 +1,5 @@
 import Marquee from "react-fast-marquee";
+import { Link } from "react-router-dom";
 
 const Home = () => {
     return (
@@ -9,7 +10,11 @@ const Home = () => {
             <div className="w-3/4 mx-auto">
                 <img src="https://i.ibb.co/cXWbb5r/Screenshot-2023-12-21-121154.png" alt="" />
             </div>
-
+            <div className="text-center">
+                <Link to={'/dashboard'}>
+                <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg btn-outline  mt-2">Lets Explore...</button>
+                </Link>
+            </div>
             <div>
                 <div className="text-5xl font-mono font-semibold text-center mt-10">
                     Users Who Gets Benefited By This
