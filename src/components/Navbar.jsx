@@ -29,6 +29,9 @@ const Navbar = () => {
                                     :
                                     <></>
                             }
+                            <Link to={'/todo'}>
+                                <h2 className="hover:bg-base-300 p-3 rounded-lg">To Do</h2>
+                            </Link>
                             <Link to={'/ongoing'}>
                                 <h2 className="hover:bg-base-300 p-3 rounded-lg">Ongoing</h2>
                             </Link>
@@ -38,9 +41,7 @@ const Navbar = () => {
                             <Link to={'/addtask'}>
                                 <h2 className="hover:bg-base-300 p-3 rounded-lg">Add Task</h2>
                             </Link>
-                            <Link to={'/todo'}>
-                                <h2 className="hover:bg-base-300 p-3 rounded-lg">To Do</h2>
-                            </Link>
+                            
                         </div>
                     </div>
                     <div className="dropdown dropdown-end flex items-center gap-2">
