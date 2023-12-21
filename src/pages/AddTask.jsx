@@ -1,8 +1,45 @@
+import { useContext } from "react";
+import { Authcontext } from "../providers/AuthProvider";
+import Swal from 'sweetalert2'
+
 const AddTask = () => {
+    const { user } = useContext(Authcontext);
+    const handleAddTask = event => {
+        event.preventDefault();
+        const form = event.target;
+        const title = form.title.value;
+        const description = form.description.value;
+        const deadline = form.deadline.value;
+        const priority = form.priority.value;
+        const email = user?.email;
+        const status = 'pending'
+        const newTask = {title,description,deadline,priority,email,status};
+        fetch('https://task-master-server-six.vercel.app/task', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newTask)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Task Added Successfully',
+                        icon: 'success',
+                        confirmButtonText: 'Cool'
+                    })
+                    console.log('added');
+                }
+            })
+
+    }
     return (
         <div className="w-2/4 mx-auto">
             <h1 className="text-center font-semibold text-6xl text-red-800 my-6">Add Your To Do List</h1>
-            <form>
+            <form onSubmit={handleAddTask}>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 py-5 border-red-100 border-2">
                     {/* 1 */}
                     <div className="form-control  items-center">

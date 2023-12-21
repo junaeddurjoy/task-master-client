@@ -16,6 +16,7 @@ import Authprovider from './providers/AuthProvider.jsx';
 import Login from './pages/Login.jsx';
 import Registration from './pages/Registration.jsx';
 import PrivateRoutes from './PrivateRoutes.jsx';
+import Updatetask from './pages/Updatetask.jsx';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,11 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration></Registration>,
+      },
+      {
+        path: "/updatetask/:id",
+        element: <Updatetask></Updatetask>,
+        loader: ({ params }) => fetch(`https://task-master-server-six.vercel.app/task/${params.id}`)
       }
     ]
   },
